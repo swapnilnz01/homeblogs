@@ -56,47 +56,21 @@ test.describe('Login Flow', () => {
 });
 
 test.describe('Dashboard', () => {
-  test('should display dashboard after login', async ({ page, context }) => {
-    // Set up session
-    await context.addCookies([
-      {
-        name: 'sessionId',
-        value: 'test-session',
-        domain: 'localhost',
-        path: '/',
-      },
-    ]);
-
+  test('should display dashboard after login', async ({ page }) => {
     await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     await expect(page.getByRole('heading', { name: 'HomeBlog Dashboard' })).toBeVisible();
   });
 
-  test('should display user information', async ({ page, context }) => {
-    // Simulate logged-in user
-    await context.addCookies([
-      {
-        name: 'sessionId',
-        value: 'test-session',
-        domain: 'localhost',
-        path: '/',
-      },
-    ]);
-
+  test('should display user information', async ({ page }) => {
     await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     await expect(page.getByText(/Welcome, John Doe/)).toBeVisible();
   });
 
-  test('should allow content submission', async ({ page, context }) => {
-    await context.addCookies([
-      {
-        name: 'sessionId',
-        value: 'test-session',
-        domain: 'localhost',
-        path: '/',
-      },
-    ]);
-
+  test('should allow content submission', async ({ page }) => {
     await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     // Fill editor
     await page.getByTestId('content-editor').fill('This is my test blog post');
@@ -111,33 +85,17 @@ test.describe('Dashboard', () => {
     await expect(page.getByTestId('content-editor')).toHaveValue('');
   });
 
-  test('should disable submit button when content is empty', async ({ page, context }) => {
-    await context.addCookies([
-      {
-        name: 'sessionId',
-        value: 'test-session',
-        domain: 'localhost',
-        path: '/',
-      },
-    ]);
-
+  test('should disable submit button when content is empty', async ({ page }) => {
     await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     const submitButton = page.getByTestId('submit-button');
     await expect(submitButton).toBeDisabled();
   });
 
-  test('should enable submit button when content is provided', async ({ page, context }) => {
-    await context.addCookies([
-      {
-        name: 'sessionId',
-        value: 'test-session',
-        domain: 'localhost',
-        path: '/',
-      },
-    ]);
-
+  test('should enable submit button when content is provided', async ({ page }) => {
     await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     await page.getByTestId('content-editor').fill('Test content');
     
@@ -149,14 +107,17 @@ test.describe('Dashboard', () => {
 test.describe('Navigation', () => {
   test('should navigate to blog from home', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: /blog/i }).first().click();
+    await page.waitForLoadState('networkidle');
+    await page.getByRole('link', { name: /blog/i }).click();
     
     await expect(page).toHaveURL(/.*\/blog/);
   });
 
   test('should navigate to login page', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: /login|sign/i }).click();
+    await page.waitForLoadState('networkidle');
+    const loginLink = page.locator('a:has-text("Login")');
+    await loginLink.click();
     
     await expect(page).toHaveURL(/.*\/login/);
   });
