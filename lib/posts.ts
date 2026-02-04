@@ -32,10 +32,18 @@ export function getPost(slug: string): Post | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
+    // Convert date to string if it's a Date object
+    let dateStr = data.date || new Date().toISOString().split('T')[0];
+    if (dateStr instanceof Date) {
+      dateStr = dateStr.toISOString().split('T')[0];
+    } else if (typeof dateStr !== 'string') {
+      dateStr = String(dateStr);
+    }
+
     return {
       slug,
       title: data.title || 'Untitled',
-      date: data.date || new Date().toISOString().split('T')[0],
+      date: dateStr,
       excerpt: data.excerpt || '',
       content,
     };

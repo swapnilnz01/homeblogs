@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HomeBlog
+
+A modern blog platform built with Next.js and TypeScript, created using Model Context Protocol (MCP). This project demonstrates full-stack development with authentication, markdown support, and automated testing.
+
+## Features
+
+- **Markdown Blog System**: Write posts in Markdown with YAML frontmatter
+- **User Authentication**: Login with firstname, lastname, email, and username
+- **Blog Editor**: Authenticated users can edit and submit blog content
+- **Responsive Design**: Built with Tailwind CSS for modern styling
+- **Automated Testing**: Playwright test suite for all features
+
+## Built With MCP
+
+This project was created using the Model Context Protocol (MCP) to accelerate development with AI-assisted coding patterns and best practices.
 
 ## Getting Started
 
@@ -6,31 +20,72 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+├── page.tsx              # Home page
+├── blog/
+│   ├── page.tsx          # Blog listing
+│   └── [slug]/page.tsx   # Individual post
+├── login/
+│   └── page.tsx          # Login page
+└── dashboard/
+    └── page.tsx          # Post-login editor
+
+lib/
+├── posts.ts              # Blog post utilities
+└── auth.ts               # Authentication helpers
+
+posts/
+└── welcome.md            # Sample blog post
+```
+
+## Features in Detail
+
+### Blog System
+- Posts stored as Markdown files in `/posts` directory
+- Automatic frontmatter parsing (title, date, excerpt)
+- Static generation for optimal performance
+
+### Authentication
+- User login with firstname, lastname, email, and username
+- Session-based authentication
+- Protected dashboard/editor routes
+
+### Editor
+- Post-login text editor for creating/editing content
+- Simple submit functionality
+- Form validation
+
+## Testing
+
+Run Playwright tests to validate all features:
+
+```bash
+npx playwright test
+```
+
+View test report:
+```bash
+npx playwright show-report
+```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Playwright Testing](https://playwright.dev)
+- [Tailwind CSS](https://tailwindcss.com)
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy is using [Vercel](https://vercel.com):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install -g vercel
+vercel
+```
