@@ -1,0 +1,183 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "HomeBlog" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - link "Blog" [ref=e6] [cursor=pointer]:
+          - /url: /blog
+        - link "Login" [ref=e7] [cursor=pointer]:
+          - /url: /login
+        - link "Skip to main content" [ref=e8] [cursor=pointer]:
+          - /url: "#main-content"
+  - main [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - heading "Stories that inspire and connect" [level=2] [ref=e13]:
+            - text: Stories that inspire and
+            - text: connect
+          - paragraph [ref=e14]: Discover thoughtful perspectives on technology, business, health, and more. Join our community of writers and readers.
+          - generic [ref=e15]:
+            - link "Explore Blog" [ref=e16] [cursor=pointer]:
+              - /url: /blog
+            - link "Write a Post" [ref=e17] [cursor=pointer]:
+              - /url: /login
+        - generic [ref=e18]:
+          - heading "Featured Stories" [level=3] [ref=e19]
+          - generic [ref=e20]:
+            - 'link "Featured AI in 2026: The Year of Practical Intelligence Exploring the advancements and practical applications of artificial intelligence in 2026. S Sarah Chen Feb 4, 2026 1 comments" [ref=e21] [cursor=pointer]':
+              - /url: /blog/ai-in-2026
+              - generic [ref=e22]:
+                - generic [ref=e25]: Featured
+                - generic [ref=e26]:
+                  - 'heading "AI in 2026: The Year of Practical Intelligence" [level=4] [ref=e27]'
+                  - paragraph [ref=e28]: Exploring the advancements and practical applications of artificial intelligence in 2026.
+                  - generic [ref=e29]:
+                    - generic [ref=e30]: S
+                    - generic [ref=e31]:
+                      - paragraph [ref=e32]: Sarah Chen
+                      - paragraph [ref=e33]: Feb 4, 2026
+                    - generic [ref=e34]: 1 comments
+            - 'link "Featured Cancer Research: Breakthrough Therapies of 2026 Latest developments in cancer treatment and immunotherapy showing promising results. D Dr. James Rivera Feb 3, 2026 1 comments" [ref=e35] [cursor=pointer]':
+              - /url: /blog/cancer-and-medical
+              - generic [ref=e36]:
+                - generic [ref=e39]: Featured
+                - generic [ref=e40]:
+                  - 'heading "Cancer Research: Breakthrough Therapies of 2026" [level=4] [ref=e41]'
+                  - paragraph [ref=e42]: Latest developments in cancer treatment and immunotherapy showing promising results.
+                  - generic [ref=e43]:
+                    - generic [ref=e44]: D
+                    - generic [ref=e45]:
+                      - paragraph [ref=e46]: Dr. James Rivera
+                      - paragraph [ref=e47]: Feb 3, 2026
+                    - generic [ref=e48]: 1 comments
+            - 'link "Featured Tesla Stock Report Q1 2026: Growth and Innovation Analysis of Tesla''s financial performance and upcoming product launches. M Michael Chen Feb 2, 2026 1 comments" [ref=e49] [cursor=pointer]':
+              - /url: /blog/tesla-stock-report
+              - generic [ref=e50]:
+                - generic [ref=e53]: Featured
+                - generic [ref=e54]:
+                  - 'heading "Tesla Stock Report Q1 2026: Growth and Innovation" [level=4] [ref=e55]'
+                  - paragraph [ref=e56]: Analysis of Tesla's financial performance and upcoming product launches.
+                  - generic [ref=e57]:
+                    - generic [ref=e58]: M
+                    - generic [ref=e59]:
+                      - paragraph [ref=e60]: Michael Chen
+                      - paragraph [ref=e61]: Feb 2, 2026
+                    - generic [ref=e62]: 1 comments
+            - link "Featured Understanding Global Tariffs and Trade Policy in 2026 Impact analysis of new trade policies on global markets and supply chains. E Economic Times Feb 1, 2026 1 comments" [ref=e63] [cursor=pointer]:
+              - /url: /blog/trumps-tariffs
+              - generic [ref=e64]:
+                - generic [ref=e67]: Featured
+                - generic [ref=e68]:
+                  - heading "Understanding Global Tariffs and Trade Policy in 2026" [level=4] [ref=e69]
+                  - paragraph [ref=e70]: Impact analysis of new trade policies on global markets and supply chains.
+                  - generic [ref=e71]:
+                    - generic [ref=e72]: E
+                    - generic [ref=e73]:
+                      - paragraph [ref=e74]: Economic Times
+                      - paragraph [ref=e75]: Feb 1, 2026
+                    - generic [ref=e76]: 1 comments
+            - 'link "Featured Social Media Addiction: The Digital Wellness Crisis Exploring the psychological impacts of social media and strategies for healthy digital habits. D Dr. Lisa Anderson Jan 31, 2026 1 comments" [ref=e77] [cursor=pointer]':
+              - /url: /blog/social-media-addiction
+              - generic [ref=e78]:
+                - generic [ref=e81]: Featured
+                - generic [ref=e82]:
+                  - 'heading "Social Media Addiction: The Digital Wellness Crisis" [level=4] [ref=e83]'
+                  - paragraph [ref=e84]: Exploring the psychological impacts of social media and strategies for healthy digital habits.
+                  - generic [ref=e85]:
+                    - generic [ref=e86]: D
+                    - generic [ref=e87]:
+                      - paragraph [ref=e88]: Dr. Lisa Anderson
+                      - paragraph [ref=e89]: Jan 31, 2026
+                    - generic [ref=e90]: 1 comments
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - heading "5+" [level=4] [ref=e93]
+            - paragraph [ref=e94]: Blog Posts
+          - generic [ref=e95]:
+            - heading "5+" [level=4] [ref=e96]
+            - paragraph [ref=e97]: Community Comments
+          - generic [ref=e98]:
+            - heading "1000+" [level=4] [ref=e99]
+            - paragraph [ref=e100]: Active Readers
+      - generic [ref=e102]:
+        - heading "Ready to share your story?" [level=3] [ref=e103]
+        - paragraph [ref=e104]: Join our community of writers and start publishing today.
+        - link "Get Started Now" [ref=e105] [cursor=pointer]:
+          - /url: /login
+  - contentinfo [ref=e106]:
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - heading "About" [level=3] [ref=e110]
+          - list [ref=e111]:
+            - listitem [ref=e112]:
+              - link "About HomeBlog" [ref=e113] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e114]:
+              - link "Our Story" [ref=e115] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e116]:
+              - link "Careers" [ref=e117] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e118]:
+          - heading "Support" [level=3] [ref=e119]
+          - list [ref=e120]:
+            - listitem [ref=e121]:
+              - link "FAQ" [ref=e122] [cursor=pointer]:
+                - /url: "#faq"
+            - listitem [ref=e123]:
+              - link "Contact Us" [ref=e124] [cursor=pointer]:
+                - /url: "#contact"
+            - listitem [ref=e125]:
+              - link "Documentation" [ref=e126] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e127]:
+          - heading "Community" [level=3] [ref=e128]
+          - list [ref=e129]:
+            - listitem [ref=e130]:
+              - link "Twitter" [ref=e131] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e132]:
+              - link "GitHub" [ref=e133] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e134]:
+              - link "Discord" [ref=e135] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e136]:
+          - heading "Contact" [level=3] [ref=e137]
+          - paragraph [ref=e138]: "Email: hello@homeblog.com"
+          - paragraph [ref=e139]: "Phone: +1 (555) 123-4567"
+          - paragraph [ref=e140]: "Address: San Francisco, CA"
+      - generic [ref=e141]:
+        - heading "Frequently Asked Questions" [level=3] [ref=e142]
+        - generic [ref=e143]:
+          - generic [ref=e144]:
+            - heading "How do I create a blog post?" [level=4] [ref=e145]
+            - paragraph [ref=e146]: Log in to your dashboard and fill out the blog creation form with title, excerpt, and content.
+          - generic [ref=e147]:
+            - heading "Is HomeBlog free?" [level=4] [ref=e148]
+            - paragraph [ref=e149]: Yes, HomeBlog is completely free to use. Create an account and start publishing immediately.
+          - generic [ref=e150]:
+            - heading "Can I edit my posts?" [level=4] [ref=e151]
+            - paragraph [ref=e152]: Currently, posts are immutable once published. We're working on edit functionality.
+          - generic [ref=e153]:
+            - heading "How do comments work?" [level=4] [ref=e154]
+            - paragraph [ref=e155]: Anyone can leave comments on published posts. Comments appear immediately on the post page.
+      - generic [ref=e156]:
+        - paragraph [ref=e157]: © 2026 HomeBlog. All rights reserved. Built with Next.js and ❤️
+        - generic [ref=e158]:
+          - link "Privacy" [ref=e159] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms" [ref=e160] [cursor=pointer]:
+            - /url: "#"
+          - link "Cookie Policy" [ref=e161] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e167] [cursor=pointer]:
+    - img [ref=e168]
+  - alert [ref=e171]
+```

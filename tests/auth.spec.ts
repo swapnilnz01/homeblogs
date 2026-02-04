@@ -89,7 +89,7 @@ test.describe('Dashboard', () => {
     await page.goto('/dashboard');
     await page.waitForLoadState('networkidle');
     
-    const submitButton = page.getByTestId('submit-button');
+    const submitButton = page.getByTestId('create-post-button');
     await expect(submitButton).toBeDisabled();
   });
 
@@ -97,9 +97,11 @@ test.describe('Dashboard', () => {
     await page.goto('/dashboard');
     await page.waitForLoadState('networkidle');
     
-    await page.getByTestId('content-editor').fill('Test content');
+    await page.getByTestId('blog-title').fill('Test Title');
+    await page.getByTestId('blog-excerpt').fill('Test Excerpt');
+    await page.getByTestId('blog-content').fill('Test content');
     
-    const submitButton = page.getByTestId('submit-button');
+    const submitButton = page.getByTestId('create-post-button');
     await expect(submitButton).toBeEnabled();
   });
 });
@@ -108,7 +110,7 @@ test.describe('Navigation', () => {
   test('should navigate to blog from home', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await page.getByRole('link', { name: /blog/i }).click();
+    await page.getByRole('link', { name: 'Blog', exact: true }).first().click();
     
     await expect(page).toHaveURL(/.*\/blog/);
   });
@@ -191,7 +193,7 @@ test.describe('Blog Creation', () => {
     await page.getByTestId('create-post-button').click();
     
     // Wait for success
-    await expect(page.getByText('Post published successfully')).toBeVisible();
+    await expect(page.getByText(/Post published successfully/)).toBeVisible();
     
     // Go to blog page
     await page.goto('/blog');

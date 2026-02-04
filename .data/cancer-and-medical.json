@@ -1,0 +1,16 @@
+{
+  "id": "cancer-and-medical",
+  "title": "Cancer Research: Breakthrough Therapies of 2026",
+  "excerpt": "Latest developments in cancer treatment and immunotherapy showing promising results.",
+  "author": "Dr. James Rivera",
+  "date": "2026-02-03",
+  "comments": [
+    {
+      "id": "comment-2",
+      "author": "Maria Santos",
+      "email": "maria@example.com",
+      "content": "This gives me hope. Thank you for sharing these important updates.",
+      "date": "2026-02-03"
+    }
+  ]
+}

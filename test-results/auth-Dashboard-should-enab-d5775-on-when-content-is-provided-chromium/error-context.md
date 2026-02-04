@@ -1,0 +1,131 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "HomeBlog" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - link "Blog" [ref=e6] [cursor=pointer]:
+          - /url: /blog
+        - link "Login" [ref=e7] [cursor=pointer]:
+          - /url: /login
+        - link "Skip to main content" [ref=e8] [cursor=pointer]:
+          - /url: "#main-content"
+  - main [ref=e9]:
+    - main [ref=e10]:
+      - navigation [ref=e11]:
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - heading "HomeBlog Dashboard" [level=1] [ref=e14]
+            - paragraph [ref=e15]: Welcome, John Doe
+          - generic [ref=e16]:
+            - link "View Blog" [ref=e17] [cursor=pointer]:
+              - /url: /blog
+            - button "Logout" [ref=e18]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - heading "User Information" [level=2] [ref=e22]
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - paragraph [ref=e25]: First Name
+              - paragraph [ref=e26]: John
+            - generic [ref=e27]:
+              - paragraph [ref=e28]: Last Name
+              - paragraph [ref=e29]: Doe
+            - generic [ref=e30]:
+              - paragraph [ref=e31]: Email
+              - paragraph [ref=e32]: john@example.com
+            - generic [ref=e33]:
+              - paragraph [ref=e34]: Username
+              - paragraph [ref=e35]: johndoe
+        - separator [ref=e36]
+        - generic [ref=e37]:
+          - heading "Create Blog Post" [level=2] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: Post Title
+              - textbox "Post Title" [ref=e42]:
+                - /placeholder: Enter post title...
+            - generic [ref=e43]:
+              - generic [ref=e44]: Post Excerpt
+              - textbox "Post Excerpt" [ref=e45]:
+                - /placeholder: Brief summary of your post...
+            - generic [ref=e46]:
+              - generic [ref=e47]: Post Content
+              - textbox "Post Content" [ref=e48]:
+                - /placeholder: Write your blog post content here...
+            - button "Publish Post" [disabled] [ref=e49]
+  - contentinfo [ref=e50]:
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - heading "About" [level=3] [ref=e54]
+          - list [ref=e55]:
+            - listitem [ref=e56]:
+              - link "About HomeBlog" [ref=e57] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e58]:
+              - link "Our Story" [ref=e59] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e60]:
+              - link "Careers" [ref=e61] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e62]:
+          - heading "Support" [level=3] [ref=e63]
+          - list [ref=e64]:
+            - listitem [ref=e65]:
+              - link "FAQ" [ref=e66] [cursor=pointer]:
+                - /url: "#faq"
+            - listitem [ref=e67]:
+              - link "Contact Us" [ref=e68] [cursor=pointer]:
+                - /url: "#contact"
+            - listitem [ref=e69]:
+              - link "Documentation" [ref=e70] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e71]:
+          - heading "Community" [level=3] [ref=e72]
+          - list [ref=e73]:
+            - listitem [ref=e74]:
+              - link "Twitter" [ref=e75] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e76]:
+              - link "GitHub" [ref=e77] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e78]:
+              - link "Discord" [ref=e79] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e80]:
+          - heading "Contact" [level=3] [ref=e81]
+          - paragraph [ref=e82]: "Email: hello@homeblog.com"
+          - paragraph [ref=e83]: "Phone: +1 (555) 123-4567"
+          - paragraph [ref=e84]: "Address: San Francisco, CA"
+      - generic [ref=e85]:
+        - heading "Frequently Asked Questions" [level=3] [ref=e86]
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - heading "How do I create a blog post?" [level=4] [ref=e89]
+            - paragraph [ref=e90]: Log in to your dashboard and fill out the blog creation form with title, excerpt, and content.
+          - generic [ref=e91]:
+            - heading "Is HomeBlog free?" [level=4] [ref=e92]
+            - paragraph [ref=e93]: Yes, HomeBlog is completely free to use. Create an account and start publishing immediately.
+          - generic [ref=e94]:
+            - heading "Can I edit my posts?" [level=4] [ref=e95]
+            - paragraph [ref=e96]: Currently, posts are immutable once published. We're working on edit functionality.
+          - generic [ref=e97]:
+            - heading "How do comments work?" [level=4] [ref=e98]
+            - paragraph [ref=e99]: Anyone can leave comments on published posts. Comments appear immediately on the post page.
+      - generic [ref=e100]:
+        - paragraph [ref=e101]: © 2026 HomeBlog. All rights reserved. Built with Next.js and ❤️
+        - generic [ref=e102]:
+          - link "Privacy" [ref=e103] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms" [ref=e104] [cursor=pointer]:
+            - /url: "#"
+          - link "Cookie Policy" [ref=e105] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e111] [cursor=pointer]:
+    - img [ref=e112]
+  - alert [ref=e115]
+```
