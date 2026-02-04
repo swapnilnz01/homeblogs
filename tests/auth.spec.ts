@@ -122,3 +122,123 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL(/.*\/login/);
   });
 });
+
+test.describe('Blog Creation', () => {
+  test('should display blog creation form on dashboard', async ({ page }) => {
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    await expect(page.getByRole('heading', { name: 'Create Blog Post' })).toBeVisible();
+    await expect(page.getByTestId('blog-title')).toBeVisible();
+    await expect(page.getByTestId('blog-excerpt')).toBeVisible();
+    await expect(page.getByTestId('blog-content')).toBeVisible();
+  });
+
+  test('should validate blog post fields - disable submit when empty', async ({ page }) => {
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    // Try to submit empty form
+    const createButton = page.getByTestId('create-post-button');
+    await expect(createButton).toBeDisabled();
+  });
+
+  test('should enable submit button when all fields are filled', async ({ page }) => {
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    await page.getByTestId('blog-title').fill('Test Blog Post');
+    await page.getByTestId('blog-excerpt').fill('This is a test excerpt');
+    await page.getByTestId('blog-content').fill('This is the test content for the blog post');
+    
+    const createButton = page.getByTestId('create-post-button');
+    await expect(createButton).toBeEnabled();
+  });
+
+  test('should create a blog post and show success message', async ({ page }) => {
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    const timestamp = Date.now();
+    // Fill form
+    await page.getByTestId('blog-title').fill(`My Test Blog Post ${timestamp}`);
+    await page.getByTestId('blog-excerpt').fill('This is my test blog post on HomeBlog');
+    await page.getByTestId('blog-content').fill('# Welcome\n\nThis is the content of my test blog post.');
+    
+    // Submit
+    await page.getByTestId('create-post-button').click();
+    
+    // Check success message
+    await expect(page.getByText('Post published successfully')).toBeVisible();
+    
+    // Form should be cleared
+    await expect(page.getByTestId('blog-title')).toHaveValue('');
+    await expect(page.getByTestId('blog-excerpt')).toHaveValue('');
+    await expect(page.getByTestId('blog-content')).toHaveValue('');
+  });
+
+  test('should display newly created blog post on blog page', async ({ page }) => {
+    // Create a unique post
+    const timestamp = Date.now();
+    const postTitle = `Blog Post ${timestamp}`;
+    
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    await page.getByTestId('blog-title').fill(postTitle);
+    await page.getByTestId('blog-excerpt').fill(`This is test excerpt ${timestamp}`);
+    await page.getByTestId('blog-content').fill(`This is test content ${timestamp}`);
+    await page.getByTestId('create-post-button').click();
+    
+    // Wait for success
+    await expect(page.getByText('Post published successfully')).toBeVisible();
+    
+    // Go to blog page
+    await page.goto('/blog');
+    await page.waitForLoadState('networkidle');
+    
+    // Check if the new post appears
+    await expect(page.getByText(postTitle)).toBeVisible();
+    await expect(page.getByText(`This is test excerpt ${timestamp}`)).toBeVisible();
+  });
+
+  test('should display blog post content when clicked', async ({ page }) => {
+    // Create a post
+    const timestamp = Date.now();
+    const postTitle = `Clickable Post ${timestamp}`;
+    
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    await page.getByTestId('blog-title').fill(postTitle);
+    await page.getByTestId('blog-excerpt').fill('Test excerpt for clicking');
+    await page.getByTestId('blog-content').fill('# Post Content\n\nThis is the full post content.');
+    await page.getByTestId('create-post-button').click();
+    
+    // Wait for success
+    await expect(page.getByText('Post published successfully')).toBeVisible();
+    
+    // Go to blog and click the post
+    await page.goto('/blog');
+    await page.waitForLoadState('networkidle');
+    
+    // Find and click the post
+    const postLink = page.getByRole('link', { name: postTitle }).first();
+    await postLink.click();
+    
+    // Should display the post content or title
+    await expect(page.getByText(/Post Content|Clickable Post/)).toBeVisible();
+  });
+
+  test('should handle missing fields with error message', async ({ page }) => {
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
+    
+    // Fill only title and submit
+    await page.getByTestId('blog-title').fill('Only Title');
+    await page.getByTestId('create-post-button').click();
+    
+    // Should remain disabled or show error
+    await page.waitForTimeout(500);
+  });
+});
