@@ -14,9 +14,13 @@ interface User {
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const [title, setTitle] = useState('');
+  const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Simulate fetching user from session
@@ -39,13 +43,41 @@ export default function DashboardPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!content.trim()) return;
+    if (!title.trim() || !excerpt.trim() || !content.trim()) {
+      setError('All fields are required');
+      return;
+    }
 
-    setSubmitted(true);
-    setTimeout(() => {
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/posts/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, excerpt, content }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to create post');
+        setIsSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+      setTitle('');
+      setExcerpt('');
       setContent('');
-      setSubmitted(false);
-    }, 2000);
+      
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   const handleLogout = () => {
@@ -110,35 +142,70 @@ export default function DashboardPage() {
           <hr className="my-8" />
 
           <div>
-            <h2 className="text-xl font-semibold mb-4">Create Content</h2>
+            <h2 className="text-xl font-semibold mb-4">Create Blog Post</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded text-red-700 text-sm">
+                  {error}
+                </div>
+              )}
+
+              <div>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                  Post Title
+                </label>
+                <input
+                  id="title"
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  data-testid="blog-title"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  placeholder="Enter post title..."
+                />
+              </div>
+
+              <div>
+                <label htmlFor="excerpt" className="block text-sm font-medium text-gray-700 mb-2">
+                  Post Excerpt
+                </label>
+                <textarea
+                  id="excerpt"
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  data-testid="blog-excerpt"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none h-20"
+                  placeholder="Brief summary of your post..."
+                />
+              </div>
+
               <div>
                 <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
-                  Content Editor
+                  Post Content
                 </label>
                 <textarea
                   id="content"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  data-testid="content-editor"
+                  data-testid="blog-content"
                   className="w-full h-64 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
-                  placeholder="Write your blog post, notes, or any content here..."
+                  placeholder="Write your blog post content here..."
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={!content.trim()}
-                data-testid="submit-button"
+                disabled={isSubmitting || !title.trim() || !excerpt.trim() || !content.trim()}
+                data-testid="create-post-button"
                 className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-2 px-6 rounded transition duration-200"
               >
-                Submit
+                {isSubmitting ? 'Publishing...' : 'Publish Post'}
               </button>
             </form>
 
             {submitted && (
               <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded text-green-700">
-                ✓ Content submitted successfully!
+                ✓ Post published successfully! <Link href="/blog" className="underline font-semibold">View your post</Link>
               </div>
             )}
           </div>
